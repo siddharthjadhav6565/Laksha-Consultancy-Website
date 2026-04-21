@@ -631,7 +631,7 @@ export default function EditorialTechConsultancyPage() {
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="font-display font-bold text-xl text-white tracking-tighter">LAKSHA.</div>
             <div className="text-[10px] md:text-xs font-sans tracking-widest uppercase text-center md:text-left">
-              © {new Date().getFullYear()} Laksha Systems. All Rights Reserved.
+              © {new Date().getFullYear()} LakshaSoft. All Rights Reserved.
             </div>
             <div className="flex gap-6 text-[10px] md:text-xs font-sans tracking-widest uppercase">
               <a href="#" className="hover:text-[#FF3E00] transition-colors" data-cursor="pointer">Twitter</a>
