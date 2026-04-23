@@ -379,47 +379,6 @@ function SystemArchitectureSection() {
   );
 }
 
-function TestimonialSection() {
-  const testimonials = [
-    { quote: "Laksha didn't just build our platform — they architected a machine. Within 90 days of launch, our MRR had tripled and CAC was down 40%.", name: "Arjun Mehta", role: "CEO, ScaleForge", tag: "SaaS Platform Build" },
-    { quote: "The engineering quality is exceptional. Their systems don't just work — they scale. We onboarded 10,000 users in a week with zero downtime.", name: "Priya Kapoor", role: "CTO, Nexora", tag: "Custom Engineering" },
-  ];
-
-  return (
-    <section className="py-24 md:py-32 px-5 md:px-10 lg:px-16 theme-bg-base border-t theme-border">
-      <div className="max-w-7xl mx-auto">
-        <FadeInSection className="mb-16">
-          <div className="text-xs font-sans uppercase tracking-[0.2em] text-[#FF3E00] mb-4">// Client Outcomes</div>
-          <h2 className="text-4xl md:text-6xl font-display font-bold theme-text-primary leading-none tracking-tight">
-            <RevealText>Results</RevealText> <br /> <RevealText>Speak.</RevealText>
-          </h2>
-        </FadeInSection>
-
-        <div className="grid lg:grid-cols-2 gap-6">
-          {testimonials.map((t, i) => (
-            <FadeInSection key={i} delay={i * 0.15}>
-              <motion.div data-cursor="pointer" whileHover={{ y: -6, scale: 1.01 }} transition={{ type: "spring", stiffness: 400, damping: 30 }} className="theme-bg-panel p-8 md:p-12 rounded-3xl relative overflow-hidden border theme-border group shadow-sm hover:shadow-xl">
-                <div className="absolute top-6 right-8 text-[120px] font-display font-bold theme-text-primary opacity-[0.03] dark:opacity-[0.05] leading-none pointer-events-none select-none group-hover:text-[#FF3E00] group-hover:opacity-10 transition-colors duration-500">"</div>
-                <span className="inline-block px-3 py-1 theme-bg-base rounded-full text-[10px] font-sans font-semibold theme-text-muted uppercase tracking-[0.15em] mb-8">{t.tag}</span>
-                <p className="font-sans text-lg md:text-2xl theme-text-primary leading-relaxed font-light mb-10">"{t.quote}"</p>
-                <div className="flex items-center gap-4 border-t theme-border pt-6">
-                  <div className="w-10 h-10 rounded-full theme-bg-primary bg-[#111111] dark:bg-[#F4F4F0] flex items-center justify-center">
-                    <span className="font-display font-bold text-xs text-white dark:text-[#111111]">{t.name.split(" ").map(n => n[0]).join("")}</span>
-                  </div>
-                  <div>
-                    <div className="font-sans font-semibold theme-text-primary text-sm">{t.name}</div>
-                    <div className="font-sans theme-text-muted text-xs">{t.role}</div>
-                  </div>
-                </div>
-              </motion.div>
-            </FadeInSection>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function ContactSection() {
   const [successOpen, setSuccessOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
@@ -777,7 +736,6 @@ export default function EditorialTechConsultancyPage() {
             <CapabilitiesGridSection />
             <ProcessSection />
             <SystemArchitectureSection />
-            <TestimonialSection />
             <ContactSection />
           </>
         )}
