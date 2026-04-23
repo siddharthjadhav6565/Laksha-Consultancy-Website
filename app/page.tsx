@@ -36,7 +36,7 @@ const PROCESS_STEPS = [
 ];
 
 const LOGOS = ["Vercel", "Stripe", "AWS", "Supabase", "Figma", "Datadog", "HubSpot", "Cloudflare"];
-
+  
 /* ─────────────────────────────────────────────────────────────
    2. NEXT-LEVEL MICRO-INTERACTIONS & COMPONENTS
 ───────────────────────────────────────────────────────────── */
@@ -421,6 +421,40 @@ function TestimonialSection() {
 }
 
 function ContactSection() {
+  const [successOpen, setSuccessOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
+  
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+
+    const data = {
+      name: (form.querySelector("#name") as HTMLInputElement)?.value || "",
+      email: (form.querySelector("#email") as HTMLInputElement)?.value || "",
+      budget: (form.querySelector("#budget") as HTMLSelectElement)?.value || "",
+      details: (form.querySelector("#details") as HTMLTextAreaElement)?.value || "",
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error();
+
+      form.reset();
+      setSuccessOpen(true);
+    } catch (err) {
+      console.error(err);
+      setErrorOpen(true);
+    }
+  };
+
   return (
     <section id="contact" className="relative px-5 md:px-10 lg:px-16 py-24 md:py-32 theme-bg-panel">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-20">
@@ -440,9 +474,9 @@ function ContactSection() {
             </div>
           </div>
         </FadeInSection>
-
+        
         <FadeInSection delay={0.15}>
-          <form className="theme-bg-base p-6 md:p-12 border theme-border rounded-3xl shadow-sm">
+          <form onSubmit={handleSubmit} className="theme-bg-base p-6 md:p-12 border theme-border rounded-3xl shadow-sm">
             <div className="space-y-6 md:space-y-8">
               <div className="relative">
                 <input type="text" id="name" required className="w-full bg-transparent border-b theme-border py-3 theme-text-primary font-sans outline-none focus:border-[#FF3E00] peer transition-colors placeholder-transparent" placeholder=" " />
@@ -482,6 +516,127 @@ function ContactSection() {
             </div>
           </form>
         </FadeInSection>
+        <AnimatePresence>
+        {successOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center px-4"
+            style={{ background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
+            onClick={() => setSuccessOpen(false)}
+          >
+            <motion.div
+              initial={{ y: 40, opacity: 0, scale: 0.96 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 20, opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-md rounded-2xl border theme-border theme-bg-panel p-6 md:p-8 shadow-2xl"
+            >
+              {/* Header */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-full bg-[#00C853]/10 flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-[#00C853]" />
+                </div>
+                <div>
+                  <div className="text-sm font-sans uppercase tracking-widest text-[#00C853]">
+                    Request Sent
+                  </div>
+                  <div className="text-xs theme-text-muted">
+                    Submission received successfully
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <p className="text-sm md:text-base font-sans theme-text-primary leading-relaxed mb-6">
+                Your project request has been logged. Our team will review the details and get back within 24 hours.
+              </p>
+
+              {/* Actions */}
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setSuccessOpen(false)}
+                  className="flex-1 py-3 rounded-full border theme-border text-sm font-sans theme-text-primary hover:bg-[#FF3E00] hover:text-white transition-colors"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => {
+                    setSuccessOpen(false);
+                    document.getElementById("capabilities")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="flex-1 py-3 rounded-full bg-[#111111] dark:bg-[#F4F4F0] text-white dark:text-[#111111] text-sm font-sans hover:bg-[#FF3E00] transition-colors"
+                >
+                  Explore More
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+      {errorOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center px-4"
+          style={{ background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
+          onClick={() => setErrorOpen(false)}
+        >
+          <motion.div
+            initial={{ y: 40, opacity: 0, scale: 0.96 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: 20, opacity: 0, scale: 0.96 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-md rounded-2xl border theme-border theme-bg-panel p-6 md:p-8 shadow-2xl"
+          >
+            {/* Header */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-full bg-[#FF3E00]/10 flex items-center justify-center">
+                <div className="w-3 h-3 rounded-full bg-[#FF3E00]" />
+              </div>
+              <div>
+                <div className="text-sm font-sans uppercase tracking-widest text-[#FF3E00]">
+                  Transmission Failed
+                </div>
+                <div className="text-xs theme-text-muted">
+                  Unable to process request
+                </div>
+              </div>
+            </div>
+
+            {/* Content */}
+            <p className="text-sm md:text-base font-sans theme-text-primary leading-relaxed mb-6">
+              The request could not be recorded at this moment. This is typically a temporary issue. 
+              Please retry, or reach out directly via email if the problem persists.
+            </p>
+
+            {/* Actions */}
+            <div className="flex gap-3">
+              <button
+                onClick={() => setErrorOpen(false)}
+                className="flex-1 py-3 rounded-full border theme-border text-sm font-sans theme-text-primary hover:bg-[#FF3E00] hover:text-white transition-colors"
+              >
+                Dismiss
+              </button>
+              <button
+                onClick={() => {
+                  setErrorOpen(false);
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="flex-1 py-3 rounded-full bg-[#111111] dark:bg-[#F4F4F0] text-white dark:text-[#111111] text-sm font-sans hover:bg-[#FF3E00] transition-colors"
+              >
+                Retry
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
       </div>
     </section>
   );
@@ -634,7 +789,6 @@ export default function EditorialTechConsultancyPage() {
               © {new Date().getFullYear()} LakshaSoft. All Rights Reserved.
             </div>
             <div className="flex gap-6 text-[10px] md:text-xs font-sans tracking-widest uppercase">
-              <a href="#" className="hover:text-[#FF3E00] transition-colors" data-cursor="pointer">Twitter</a>
               <a href="#" className="hover:text-[#FF3E00] transition-colors" data-cursor="pointer">LinkedIn</a>
               <a href="#" className="hover:text-[#FF3E00] transition-colors" data-cursor="pointer">GitHub</a>
             </div>
