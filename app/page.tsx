@@ -351,7 +351,7 @@ function SystemArchitectureSection() {
               <span className="text-transparent" style={{ WebkitTextStroke: "1px #F4F4F0" }}>Topology.</span>
             </h2>
             <p className="text-[#999999] font-sans text-base md:text-lg max-w-md leading-relaxed">
-              We abandon standard monolithic constraints, deploying distributed, event-driven architectures that scale infinitely while maintaining brutalist aesthetic precision.
+              We abandon standard monolithic constraints, deploying distributed, event-driven architectures that scale infinitely while maintaining steady performance.
             </p>
           </div>
           <div className="flex flex-col gap-4">
