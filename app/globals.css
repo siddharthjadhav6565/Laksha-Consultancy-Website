@@ -8,3 +8,12 @@
   --color-surface: #F4EFE4;
 }
 
+.light-theme select option {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.dark-theme select option {
+  background-color: #151515;
+  color: #f4f4f0;
+}

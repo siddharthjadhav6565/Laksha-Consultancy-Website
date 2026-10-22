@@ -282,18 +282,6 @@ function ContactSection() {
                   Direct Email
                 </label>
               </div>
-              <div className="relative">
-                <select id="budget" defaultValue="" className="w-full bg-transparent border-b theme-border py-3 theme-text-muted font-sans outline-none focus:border-[#FF3E00] transition-colors appearance-none" data-cursor="pointer">
-                  <option value="" disabled>Approximate Budget Range</option>
-                  <option>Under ₹5L</option>
-                  <option>₹5L – ₹20L</option>
-                  <option>₹20L – ₹50L</option>
-                  <option>₹50L+</option>
-                </select>
-                <svg className="absolute right-2 top-4 theme-text-muted pointer-events-none" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-              </div>
               <div className="relative pt-4">
                 <textarea id="details" required rows={3} className="w-full bg-transparent border-b theme-border py-3 theme-text-primary font-sans outline-none resize-none focus:border-[#FF3E00] peer transition-colors placeholder-transparent" placeholder=" " />
                 <label htmlFor="details" className="absolute left-0 top-3 text-sm font-sans theme-text-muted transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#FF3E00] peer-focus:uppercase peer-focus:tracking-widest peer-valid:-top-4 peer-valid:text-[10px] peer-valid:uppercase peer-valid:tracking-widest">
