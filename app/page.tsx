@@ -215,26 +215,6 @@ function HeroSection() {
   );
 }
 
-function StatsSection() {
-  return (
-    <section className="bg-[#111111] py-20 md:py-24 px-5 md:px-10 lg:px-16">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {STATS.map((stat, i) => (
-          <FadeInSection key={i} delay={i * 0.1}>
-            <motion.div data-cursor="pointer" whileHover={{ y: -4, backgroundColor: "#1A1A1A" }} className="flex flex-col items-start p-8 md:p-10 rounded-2xl bg-[#151515] border border-[#333333] transition-colors h-full">
-              <div className="flex items-end gap-1 mb-4">
-                <span className="font-display font-bold text-4xl lg:text-5xl leading-none text-white tracking-tight">{stat.value}</span>
-                <span className="font-display font-bold text-xl text-[#FF3E00] mb-1">{stat.unit}</span>
-              </div>
-              <span className="text-[11px] font-sans uppercase tracking-[0.15em] text-[#888888]">{stat.label}</span>
-            </motion.div>
-          </FadeInSection>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function CapabilitiesGridSection() {
   return (
     <section id="capabilities" className="py-24 md:py-32 px-5 md:px-10 lg:px-16 theme-bg-base relative z-10 border-t theme-border">
@@ -732,7 +712,6 @@ export default function EditorialTechConsultancyPage() {
           <>
             <HeroSection />
             <LogoTicker />
-            <StatsSection />
             <CapabilitiesGridSection />
             <ProcessSection />
             <SystemArchitectureSection />
