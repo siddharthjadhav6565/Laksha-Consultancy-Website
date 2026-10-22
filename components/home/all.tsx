@@ -279,7 +279,7 @@ function ContactSection() {
               <div className="relative">
                 <input type="email" id="email" required className="w-full bg-transparent border-b theme-border py-3 theme-text-primary font-sans outline-none focus:border-[#FF3E00] peer transition-colors placeholder-transparent" placeholder=" " />
                 <label htmlFor="email" className="absolute left-0 top-3 text-sm font-sans theme-text-muted transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#FF3E00] peer-focus:uppercase peer-focus:tracking-widest peer-valid:-top-4 peer-valid:text-[10px] peer-valid:uppercase peer-valid:tracking-widest">
-                  Direct Email
+                  Contact Email
                 </label>
               </div>
               <div className="relative pt-4">
